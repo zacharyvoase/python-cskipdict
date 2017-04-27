@@ -19,7 +19,7 @@ adapting it slightly for use with Python and CFFI.
 
 Installation on most systems should be pretty easy:
 
-		$ pip install cskipdict
+    $ pip install cskipdict
 
 
 ## Usage
@@ -27,29 +27,29 @@ Installation on most systems should be pretty easy:
 You can use it just like a normal `dict`, except that all keys should be
 integers between -2^63^ and +2^63^ - 1 inclusive.
 
-		>>> from cskipdict import SkipDict
-		>>> d = SkipDict()
-		>>> d
-		SkipDict({})
-		>>> len(d)
-		0
-		>>> d[123] = 'abc'
-		>>> d
-		SkipDict({123: 'abc'})
-		>>> d[420] = 'def'
-		>>> d
-		SkipDict({123: 'abc', 420: 'def'})
-		>>> d[69] = 'foo'
-		>>> d
-		SkipDict({69: 'foo', 123: 'abc', 420: 'def'})
+    >>> from cskipdict import SkipDict
+    >>> d = SkipDict()
+    >>> d
+    SkipDict({})
+    >>> len(d)
+    0
+    >>> d[123] = 'abc'
+    >>> d
+    SkipDict({123: 'abc'})
+    >>> d[420] = 'def'
+    >>> d
+    SkipDict({123: 'abc', 420: 'def'})
+    >>> d[69] = 'foo'
+    >>> d
+    SkipDict({69: 'foo', 123: 'abc', 420: 'def'})
 
 Iteration will always happen in ascending order of the keys:
 
-		>>> for k, v in d.iteritems():
-		...     print((k, v))
-		(69, 'foo')
-		(123, 'abc')
-		(420, 'def')
+    >>> for k, v in d.iteritems():
+    ...     print((k, v))
+    (69, 'foo')
+    (123, 'abc')
+    (420, 'def')
 
 
 ## Unlicense
