@@ -5,10 +5,10 @@ A fast, CFFI-based SkipDict implementation for Python.
 
 ``SkipDict`` instances are `Skip
 List <https://en.wikipedia.org/wiki/Skip_list>`__-based associative
-arrays ('dictionaries' in Python terms), mapping positive integers to
-arbitrary Python objects. Keys are always stored and returned in order,
-while maintaining average-case *O(log n)* search, insert and delete
-times, and average-case space consumption of *O(n)*.
+arrays ('dictionaries' in Python terms), mapping 64-bit signed integers
+to arbitrary Python objects. Keys are always stored and returned in
+order, while maintaining average-case *O(log n)* search, insert and
+delete times, and average-case space consumption of *O(n)*.
 
 This libary uses Peter Cannici's public-domain
 `skiplist.h <https://github.com/alpha123/skiplist.h>`__ C library,
@@ -27,7 +27,7 @@ Usage
 -----
 
 You can use it just like a normal ``dict``, except that all keys should
-be positive integers less than 2\ :sup:`64`:
+be integers between -2:sup:`63` and +2\ :sup:`63` - 1 inclusive.
 
 ::
 
