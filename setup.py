@@ -13,7 +13,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='cskipdict',
-    version='0.0.1',
+    version='0.0.2',
 
     description='A fast CFFI-based SkipDict implementation.',
     long_description=readme,
