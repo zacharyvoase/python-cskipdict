@@ -4,9 +4,8 @@ from cskipdict import SkipDict
 
 
 def check_dict(skip_dict, expected):
-    print '{!r} should == {!r}'.format(skip_dict, expected)
-    print repr(skip_dict._SkipDict__pointers)
     assert len(skip_dict) == len(expected)
+    assert len(skip_dict._SkipDict__pointers) == len(set(expected.values()))
     for k in expected:
         assert k in skip_dict
         assert skip_dict[k] == expected[k]
