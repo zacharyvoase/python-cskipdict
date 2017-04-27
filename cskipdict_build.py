@@ -3,8 +3,8 @@ import os
 from cffi import FFI
 
 
-skiplist_header_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'build', 'skiplist.h')
-include_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'c')
+src_root = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'cskipdict', 'headers')
+skiplist_header_file = os.path.join(src_root, 'skiplist.cdef')
 
 ffibuilder = FFI()
 
@@ -20,7 +20,7 @@ int skiplist_uint64_cmp(uint64_t a, uint64_t b, void *userdata);
 int skiplist_uint64_cmp(uint64_t a, uint64_t b, void *userdata) {
   return (a > b) - (a < b);
 }
-''', include_dirs=[include_dir])
+''', include_dirs=[src_root])
 
 
 if __name__ == '__main__':
