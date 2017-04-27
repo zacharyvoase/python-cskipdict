@@ -1,0 +1,8 @@
+include cskipdict_build.py
+include build/skiplist.h
+include c/fake-includes/stdlib.h
+include c/fake-includes/string.h
+include c/fake-includes/time.h
+include c/skiplist-config.h
+include c/skiplist-header.h
+include c/skiplist-template.h
