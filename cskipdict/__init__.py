@@ -28,7 +28,7 @@ class SkipDict(object):
         self.__pointers = set()
         init_err = lib.skiplist_init(
             self.__list,
-            ffi.addressof(lib, 'skiplist_uint64_cmp'),
+            ffi.addressof(lib, 'skiplist_int64_cmp'),
             # Null `void *userdata` for cmp, iter, and alloc functions
             ffi.NULL,
             ffi.NULL,
@@ -100,7 +100,7 @@ class SkipDict(object):
             node = node.next[0]
 
     def minimum(self):
-        key_pointer = ffi.new('uint64_t *')
+        key_pointer = ffi.new('int64_t *')
         val_ref = ObjectRef()
         has_result = lib.skiplist_min(self.__list, key_pointer, val_ref.ref)
         if not has_result:
@@ -108,7 +108,7 @@ class SkipDict(object):
         return (key_pointer[0], val_ref.deref)
 
     def maximum(self):
-        key_pointer = ffi.new('uint64_t *')
+        key_pointer = ffi.new('int64_t *')
         val_ref = ObjectRef()
         has_result = lib.skiplist_max(self.__list, key_pointer, val_ref.ref)
         if not has_result:
@@ -116,7 +116,7 @@ class SkipDict(object):
         return (key_pointer[0], val_ref.deref)
 
     def pop_minimum(self):
-        key_pointer = ffi.new('uint64_t *')
+        key_pointer = ffi.new('int64_t *')
         val_ref = ObjectRef()
         has_result = lib.skiplist_pop(self.__list, key_pointer, val_ref.ref)
         if not has_result:
@@ -126,7 +126,7 @@ class SkipDict(object):
         return output
 
     def pop_maximum(self):
-        key_pointer = ffi.new('uint64_t *')
+        key_pointer = ffi.new('int64_t *')
         val_ref = ObjectRef()
         has_result = lib.skiplist_shift(self.__list, key_pointer, val_ref.ref)
         if not has_result:

@@ -93,12 +93,12 @@
  *     }
  */
 void skiplist__stdsrand(void *_userdata);
-typedef int (* skiplist_cmp_fn)(uint64_t, uint64_t, void *);
-typedef int (* skiplist_iter_fn)(uint64_t, void *, void *);
+typedef int (* skiplist_cmp_fn)(int64_t, int64_t, void *);
+typedef int (* skiplist_iter_fn)(int64_t, void *, void *);
 
 typedef struct skiplist__node {
     unsigned int height;
-    uint64_t key;
+    int64_t key;
     void * val;
     struct skiplist__node *prev;
     struct skiplist__node *next[33];
@@ -150,7 +150,7 @@ void skiplist_free(skiplist_skiplist *list);
  *          overwritten.
  */
 
-short skiplist_insert(skiplist_skiplist *list, uint64_t key, void * val, void * *prior);
+short skiplist_insert(skiplist_skiplist *list, int64_t key, void * val, void * *prior);
 
 /* Gets a value associated with a key.
  * @list An initialized skiplist
@@ -161,7 +161,7 @@ short skiplist_insert(skiplist_skiplist *list, uint64_t key, void * val, void * 
  * @return 0 if the key does not exist, 1 if it does
  */
 
-short skiplist_find(skiplist_skiplist *list, uint64_t key, void * *out);
+short skiplist_find(skiplist_skiplist *list, int64_t key, void * *out);
 
 /* Gets a value associated with a key, or a default value.
  * @list An initialized skiplist
@@ -173,7 +173,7 @@ short skiplist_find(skiplist_skiplist *list, uint64_t key, void * *out);
  *          key is not set.
  */
 
-void * skiplist_get(skiplist_skiplist *list, uint64_t key, void * default_val);
+void * skiplist_get(skiplist_skiplist *list, int64_t key, void * default_val);
 
 /* Removes a key/value pair from this list.
  * @list An initialized skiplist
@@ -184,7 +184,7 @@ void * skiplist_get(skiplist_skiplist *list, uint64_t key, void * default_val);
  *          0 if it was never there
  */
 
-short skiplist_remove(skiplist_skiplist *list, uint64_t key, void * *out);
+short skiplist_remove(skiplist_skiplist *list, int64_t key, void * *out);
 
 /* Iterates through all key/value pairs in order.
  * @list An initialized skiplist
@@ -217,7 +217,7 @@ unsigned long skiplist_size(skiplist_skiplist *list);
  * @return 0 if the list is empty and 1 if it is not
  */
 
-short skiplist_min(skiplist_skiplist *list, uint64_t *key_out, void * *val_out);
+short skiplist_min(skiplist_skiplist *list, int64_t *key_out, void * *val_out);
 
 /* Returns the maximum key and value in this list.
  * @list An initalized skiplist
@@ -228,7 +228,7 @@ short skiplist_min(skiplist_skiplist *list, uint64_t *key_out, void * *val_out);
  * @return 0 if the list is empty and 1 if it is not
  */
 
-short skiplist_max(skiplist_skiplist *list, uint64_t *key_out, void * *val_out);
+short skiplist_max(skiplist_skiplist *list, int64_t *key_out, void * *val_out);
 
 /* Removes and returns the minimum key/value pair from a list.
  * @list An initialized skiplist
@@ -239,7 +239,7 @@ short skiplist_max(skiplist_skiplist *list, uint64_t *key_out, void * *val_out);
  * @return 0 if the list was already empty and 1 if it was not
  */
 
-short skiplist_pop(skiplist_skiplist *list, uint64_t *key_out, void * *val_out);
+short skiplist_pop(skiplist_skiplist *list, int64_t *key_out, void * *val_out);
 
 /* Removes and returns the maximum key/value pair from a list.
  * @list An initialized skiplist
@@ -250,6 +250,6 @@ short skiplist_pop(skiplist_skiplist *list, uint64_t *key_out, void * *val_out);
  * @return 0 if the list was already empty and 1 if it was not
  */
 
-short skiplist_shift(skiplist_skiplist *list, uint64_t *key_out, void * *val_out);
+short skiplist_shift(skiplist_skiplist *list, int64_t *key_out, void * *val_out);
 
-int skiplist_uint64_cmp(uint64_t a, uint64_t b, void *userdata);
+int skiplist_int64_cmp(int64_t a, int64_t b, void *userdata);
