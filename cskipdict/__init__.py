@@ -29,8 +29,7 @@ class SkipDict(object):
         init_err = lib.skiplist_init(
             self.__list,
             ffi.addressof(lib, 'skiplist_int64_cmp'),
-            # Null `void *userdata` for cmp, iter, and alloc functions
-            ffi.NULL,
+            # Null `void *userdata` for cmp and malloc functions.
             ffi.NULL,
             ffi.NULL)
         if init_err:
