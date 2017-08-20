@@ -1,4 +1,4 @@
-cskipdict/_skiplist.[co]
+cskipdict/_skiplist.*
 cskipdict/headers/random_uniform.o
 
 # Finder files
