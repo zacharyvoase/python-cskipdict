@@ -3,7 +3,7 @@ import os
 from cffi import FFI
 
 
-src_root = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'cskipdict', 'headers')
+src_root = os.path.join(os.path.dirname(__file__), 'cskipdict', 'headers')
 skiplist_header_file = os.path.join(src_root, 'skiplist.cdef')
 
 ffibuilder = FFI()
@@ -20,7 +20,7 @@ int skiplist_int64_cmp(int64_t a, int64_t b, void *userdata);
 int skiplist_int64_cmp(int64_t a, int64_t b, void *userdata) {
   return (a > b) - (a < b);
 }
-''', include_dirs=[src_root])
+''', include_dirs=[src_root], sources=[os.path.join(src_root, 'random_uniform.cpp')])
 
 
 if __name__ == '__main__':

@@ -40,9 +40,10 @@
  *     - SKIPLIST_MALLOC & SKIPLIST_FREE - wrappers for stdlib malloc/free by default.
  *     Both are passed a void \* data pointer (for memory pool, gc context, etc).
  *     - SKIPLIST_HEIGHT - a macro function taking `(SKIPLIST_KEY)` which should
- *     produce an unsigned int 0 <= height < SKIPLIST_MAX_LEVELS. By default this
- *     is implemented using `arc4random_uniform` in the C standard library, but you
- *     might want to replace it with a key-dependent function.
+ *     produce an unsigned int 0 <= height < SKIPLIST_MAX_LEVELS. By default
+ *     this is implemented using `std::uniform_int_distribution` in the C++
+ *     standard library, but you might want to replace it with a key-dependent
+ *     function.
  *     - SKIPLIST_STATIC - if defined, declare all public functions static
  *     (make skiplist local to the file it's included from).
  *     - SKIPLIST_EXTERN - 'extern' by default; define to change calling convention
@@ -128,7 +129,8 @@
 #ifdef SKIPLIST_IMPLEMENTATION
 #include <stdlib.h>
 #endif
-#define SKIPLIST_HEIGHT(key) (unsigned int)arc4random_uniform(SKIPLIST_MAX_LEVELS);
+#include "random_uniform.h"
+#define SKIPLIST_HEIGHT(key) random_uniform(SKIPLIST_MAX_LEVELS);
 #endif
 
 #if !defined(SKIPLIST_KEY) || !defined(SKIPLIST_VALUE)

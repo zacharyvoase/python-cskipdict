@@ -1,4 +1,5 @@
 cskipdict/_skiplist.[co]
+cskipdict/headers/random_uniform.o
 
 # Finder files
 .DS_Store
